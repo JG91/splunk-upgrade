@@ -29,6 +29,33 @@ universal-forwarder/
 
 > All installers are official builds downloaded from Splunk’s previous releases archive.
 
+## 📦 Splitting Large Installer Files
+
+GitHub does not allow files larger than 100 MB, and commits over 25 MB can lead to issues. To avoid this, files are split using the `split` command.
+
+### 🔹 To Split (Before Uploading to GitHub)
+
+```bash
+split -b 25M splunkforwarder-8.2.6.tgz splunkforwarder-8.2.6.tgz.part-
+```
+This creates:
+```
+splunkforwarder-8.2.0-e053ef3c985f-Linux-x86_64.tgz.part-aa
+splunkforwarder-8.2.0-e053ef3c985f-Linux-x86_64.tgz.part-ab
+...
+```
+
+### 🔹 To Recombine (After Cloning the Repo)
+
+Use cat to merge the parts back into the original installer:
+```bash
+cat splunkforwarder-8.2.0-e053ef3c985f-Linux-x86_64.tgz.part-* > splunkforwarder-8.2.0-e053ef3c985f-Linux-x86_64.tgz
+```
+Then proceed to use the .tgz file as usual.
+
+✅ Ensure the parts are concatenated in the correct order using wildcard expansion (part-*) or explicitly (part-aa, part-ab, ...).
+
+
 ## 🧭 How to Use
 
 1. Identify the current version of the UF deployed on your hosts.
@@ -41,6 +68,8 @@ universal-forwarder/
 - You may need to log in to your Splunk account to obtain the original files.
 - For security and compliance, verify file integrity and official hashes where possible.
 - Make sure your team agrees on upgrade versions to avoid version fragmentation.
+
+
 
 ## 🔗 Related
 
