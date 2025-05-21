@@ -7,7 +7,7 @@ This document outlines recommended upgrade paths for Splunk Universal Forwarders
 ## 🔁 Why Use Intermediate Versions?
 
 Splunk does **not support skipping major versions** in certain upgrade paths. For example:
-- Upgrading directly from UF 6.4 → 9.1 is not supported
+- Upgrading directly from UF 6.4 → 9.x is not supported
 - Certain configuration or feature changes may break the upgrade
 
 > Always review the [official Splunk upgrade documentation](https://docs.splunk.com/Documentation/Splunk/latest/Installation/HowtoupgradeSplunk) before performing upgrades.
